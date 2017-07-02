@@ -111,7 +111,7 @@ void ARNB_KUNCharacter::SetupPlayerInputComponent(class UInputComponent* InputCo
 {
 	// set up gameplay key bindings
 	check(InputComponent);
-
+	
 	InputComponent->BindAction("Sprint", IE_Pressed, this, &ARNB_KUNCharacter::BeginSprint);
 	InputComponent->BindAction("Sprint", IE_Released, this, &ARNB_KUNCharacter::EndSprint);
 
@@ -157,6 +157,7 @@ void ARNB_KUNCharacter::SetupPlayerInputComponent(class UInputComponent* InputCo
 	InputComponent->BindAxis("TurnRate", this, &ARNB_KUNCharacter::TurnAtRate);
 	InputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	InputComponent->BindAxis("LookUpRate", this, &ARNB_KUNCharacter::LookUpAtRate);
+
 }
 
 void ARNB_KUNCharacter::OnFire()

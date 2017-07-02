@@ -50,6 +50,8 @@ public:
 
 	// ------------- Stamina ----------------------------------------------------------------------
 	
+#pragma region Stamina
+
 	UFUNCTION(BlueprintCallable, Category = "AAA")
 	bool IsSprintig() const { return bIsSprinting; }
 
@@ -66,6 +68,10 @@ public:
 	**/
 	UFUNCTION(BlueprintPure, Category = Stamina)
 	float UpdateCurrentStamina(float Stamina);
+
+#pragma endregion
+
+
 
 	// ------------- Base ----------------------------------------------------------------------
 
@@ -149,7 +155,7 @@ protected:
 
 	UFUNCTION(BlueprintCallable, Category = AAA)
 	void EndSprint();
-
+	
 	UFUNCTION(BlueprintCallable, Category = AAA)
 	void BeginPickup();
 

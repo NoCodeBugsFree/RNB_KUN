@@ -3,6 +3,8 @@
 #pragma once
 #include "Engine.h"
 
+#define COLLISION_INTERACTABLE ECC_GameTraceChannel1
+
 /** Tool type  */
 UENUM(BlueprintType)
 enum class ETool : uint8
