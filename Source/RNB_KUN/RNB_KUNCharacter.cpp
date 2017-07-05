@@ -66,7 +66,7 @@ void ARNB_KUNCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	/** custom rifle  */
-	FP_Gun->AttachToComponent(Mesh1P, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), TEXT("Gun")); //Attach gun mesh component to Skeleton, doing it here because the skelton is not yet created in the constructor
+	FP_Gun->AttachToComponent(Mesh1P, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), TEXT("Gun")); //Attach gun mesh component to Skeleton, doing it here because the skeleton is not yet created in the constructor
 	FP_Gun->SetWorldScale3D(FVector(3.5f, 3.5f, 3.5f));
 
 	/** sets the pickups inventory size */
