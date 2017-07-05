@@ -171,6 +171,8 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = AAA)
 	void EndInteract();
 
+	void ThrowGranade();
+
 	// TODO don't work properly
 	/** Bullet physics tutorial   */
 	UFUNCTION(BlueprintCallable, Category = "AAA")
@@ -189,6 +191,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AAA", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<class ABullet> BulletType;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AAA")
+	TSubclassOf<class ALauncherProjectile> LauncherProjectileToSpawn;
 
 	// APawn interface
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;

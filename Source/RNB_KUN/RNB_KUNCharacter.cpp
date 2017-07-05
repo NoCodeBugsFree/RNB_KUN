@@ -12,6 +12,7 @@
 #include "PenetrableMaterial.h"
 #include "RNB_KUN/4125/Bullet.h"
 #include "RNB_KUNGameMode.h"
+#include "LauncherProjectile.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
@@ -157,6 +158,9 @@ void ARNB_KUNCharacter::SetupPlayerInputComponent(class UInputComponent* InputCo
 	InputComponent->BindAxis("TurnRate", this, &ARNB_KUNCharacter::TurnAtRate);
 	InputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	InputComponent->BindAxis("LookUpRate", this, &ARNB_KUNCharacter::LookUpAtRate);
+
+	// Pickup
+	InputComponent->BindAction("ThrowGranade", IE_Pressed, this, &ARNB_KUNCharacter::ThrowGranade);
 
 }
 
@@ -371,6 +375,29 @@ void ARNB_KUNCharacter::BeginInteract()
 void ARNB_KUNCharacter::EndInteract()
 {
 	bIsInteracting = false;
+}
+
+void ARNB_KUNCharacter::ThrowGranade()
+{
+	if (LauncherProjectileToSpawn)
+	{
+		UWorld* const World = GetWorld();
+		if (World)
+		{
+			FActorSpawnParameters SpawnParams;
+			SpawnParams.Owner = this;
+			SpawnParams.Instigator = Instigator;
+			
+			FVector SpawnLocation = FP_Gun->GetSocketLocation("ProjectileSocket") + GetActorForwardVector() * 100.f;
+			FRotator SpawnRotation = GetControlRotation();
+			
+			ALauncherProjectile* LauncherProjectile = World->SpawnActor<ALauncherProjectile>(LauncherProjectileToSpawn, SpawnLocation, SpawnRotation, SpawnParams);
+		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("LauncherProjectileToSpawn == NULL"));
+	}
 }
 
 void ARNB_KUNCharacter::FireBullet() 
